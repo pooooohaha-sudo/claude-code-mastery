@@ -1,10 +1,9 @@
 import React from 'react'
 import Calendar from './components/Calendar'
-import './App.css'
 
 function App() {
   return (
-    <div className="app">
+    <div className="flex items-center justify-center min-h-screen">
       <Calendar />
     </div>
   )
