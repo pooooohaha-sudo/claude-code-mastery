@@ -13,6 +13,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { siteConfig } from "@/config/site";
+import { mainNav } from "@/config/navigation";
 
 /**
  * 모바일 화면에서만 보이는 내비게이션 시트.
@@ -33,7 +34,7 @@ export function MobileNav() {
           <SheetTitle>{siteConfig.name}</SheetTitle>
         </SheetHeader>
         <nav className="flex flex-col gap-2 px-4">
-          {siteConfig.nav.map((item) => (
+          {mainNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}

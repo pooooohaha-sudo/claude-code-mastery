@@ -4,8 +4,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import { SiteFooter } from "@/components/layout/site-footer";
-import { SiteHeader } from "@/components/layout/site-header";
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { siteConfig } from "@/config/site";
 
 const geistSans = Geist({
@@ -28,18 +28,19 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
 };
 
+/**
+ * 루트 레이아웃. html, body, 테마, 토스트만 담당하고
+ * 헤더와 푸터는 라우트 그룹별 레이아웃에서 감싼다.
+ */
 export default function RootLayout({
   children,
 }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider>
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
+          <TooltipProvider>{children}</TooltipProvider>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
